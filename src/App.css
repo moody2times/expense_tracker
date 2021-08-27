@@ -1,0 +1,20 @@
+.App {
+	background-color: #242424;
+	border: 0.4rem solid ghostwhite;
+	border-radius: 1rem;
+	box-shadow: 0 0.4rem 0 rgb(128, 128, 128);
+	margin: 9.5rem auto;
+	padding: 3rem 6rem;
+
+	width: 80rem;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+.heading {
+	font-size: 3rem;
+	text-align: center;
+	text-transform: uppercase;
+}
