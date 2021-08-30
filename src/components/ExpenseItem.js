@@ -15,18 +15,15 @@ const ExpenseItem = (props) => {
 	// };
 
 	return (
-		<ul className="list__container">
-			<li className="list__date">
-				<span className="list__date--month">{month}</span>
+		<li className="list__container">
+			<div className="list__date">
 				<span className="list__date--date">{date}</span>
+				<span className="list__date--month">{month}</span>
 				<span className="list__date--year">{year}</span>
-			</li>
-			<li className="list__description">{props.description}</li>
-			<li className="list__amount">${props.amount}</li>
-			{/* <button className="btn" onClick={handleClick}>
-				Add Expense
-			</button> */}
-		</ul>
+			</div>
+			<div className="list__description">{props.description}</div>
+			<div className="list__amount">${props.amount}</div>
+		</li>
 	);
 };
 

@@ -18,3 +18,7 @@
 	text-align: center;
 	text-transform: uppercase;
 }
+
+.list {
+	list-style-type: none;
+}
