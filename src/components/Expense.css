@@ -19,6 +19,7 @@
 	border-radius: 0.7rem;
 	box-shadow: 0 0.4rem 0 #181717;
 	padding: 0.8rem 1.5rem;
+	width: 8rem;
 
 	display: flex;
 	flex-flow: column nowrap;

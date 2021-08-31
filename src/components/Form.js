@@ -1,25 +1,41 @@
 import { useState } from "react";
 import "./Form.css";
 
-const Form = () => {
+const Form = (props) => {
 	const [title, setTitle] = useState("");
 	const [amount, setAmount] = useState("");
 	const [date, setDate] = useState("");
 
 	const handleTitleChange = (event) => {
-		event.preventDefault();
+		const newTitle = event.target.value;
+		setTitle(newTitle);
 	};
 
 	const handleAmountChange = (event) => {
-		event.preventDefault();
+		const newAmount = event.target.value;
+		setAmount(newAmount);
 	};
 
 	const handleDateChange = (event) => {
-		event.preventDefault();
+		const newDate = new Date(event.target.value);
+		setDate(newDate);
+	};
+
+	const resetForm = () => {
+		setTitle("");
+		setAmount("");
+		setDate("");
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		const expenseData = {
+			title,
+			amount,
+			date,
+		};
+		resetForm();
+		props.formData(expenseData);
 	};
 
 	return (

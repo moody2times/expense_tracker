@@ -1,24 +1,46 @@
+import { useState } from "react";
 import "./App.css";
 import ExpenseItem from "./components/ExpenseItem";
 import Form from "./components/Form";
+import Select from "./components/Select";
 
 const App = () => {
+	const [data, setData] = useState([
+		{
+			title: "Guitar",
+			amount: 130,
+			date: `December/26/2019`,
+		},
+		{
+			title: "Smartphone",
+			amount: 200,
+			date: `June/17/2020`,
+		},
+		{
+			title: "Toys",
+			amount: 50,
+			date: `April/17/2021`,
+		},
+	]);
+	const handleData = (expense) => {
+		setData((prevData) => [expense, ...prevData]);
+	};
+	const randomNumber = () => Math.trunc(Math.random() + 1);
+
 	return (
 		<div className="App">
 			<h1 className="heading">Expense tracker</h1>
-			<Form />
+			<Form formData={handleData} />
+			<Select />
 			<ul className="list">
-				<ExpenseItem date="85-26-12" description="Guitar" amount="150" />
-				<ExpenseItem
-					date="17/06/95"
-					description="JavaScript Course"
-					amount="50"
-				/>
-				<ExpenseItem
-					date="17/04/2021"
-					description="Smart Phone"
-					amount="300"
-				/>
+				{data.map((d, i) => (
+					<ExpenseItem
+						title={d.title}
+						amount={d.amount}
+						date={d.date}
+						key={i * randomNumber()}
+					/>
+				))}
 			</ul>
 		</div>
 	);
