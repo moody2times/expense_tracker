@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Form.css";
+import "../styles/Form.css";
 
 const Form = (props) => {
 	const [title, setTitle] = useState("");
@@ -17,7 +17,7 @@ const Form = (props) => {
 	};
 
 	const handleDateChange = (event) => {
-		const newDate = new Date(event.target.value);
+		const newDate = event.target.value;
 		setDate(newDate);
 	};
 
@@ -27,12 +27,27 @@ const Form = (props) => {
 		setDate("");
 	};
 
+	let multiplier = 0;
+	const randomNumber = () => {
+		const number = Math.random() * multiplier;
+		multiplier++;
+		return number;
+	};
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		const d = new Date(date);
+		const locale = navigator.locale;
+		const month = d.toLocaleDateString(locale, { month: "long" });
+		const day = d.toLocaleDateString(locale, { day: "2-digit" });
+		const year = d.toLocaleDateString(locale, { year: "numeric" });
+		const finalDate = `${month}/${day}/${year}`;
+
 		const expenseData = {
 			title,
 			amount,
-			date,
+			date: finalDate,
+			key: randomNumber(),
 		};
 		resetForm();
 		props.formData(expenseData);

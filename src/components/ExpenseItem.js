@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import "./Expense.css";
+import "../styles/Expense.css";
 
 const ExpenseItem = (props) => {
 	const locale = navigator.locale;

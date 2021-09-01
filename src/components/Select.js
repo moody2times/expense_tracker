@@ -1,12 +1,13 @@
 import { useState } from "react";
-import "./Select.css";
+import "../styles/Select.css";
 
-const Select = () => {
-	const [year, setYear] = useState("");
+const Select = (props) => {
+	const [year, setYear] = useState("2019");
 
 	const handleChange = (event) => {
 		const newYear = event.target.value;
 		setYear(newYear);
+		props.selected(newYear);
 	};
 
 	return (
