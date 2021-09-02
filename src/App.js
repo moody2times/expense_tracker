@@ -29,7 +29,6 @@ const App = () => {
 	const [filter, setFilter] = useState([]);
 
 	const filterExpense = (fil) => {
-		console.log(typeof fil);
 		const filtered = data.filter((d) => d.date.includes(fil));
 		setFilter(filtered);
 	};
