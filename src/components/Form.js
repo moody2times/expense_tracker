@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/Form.css";
+import { Button } from "./Button";
 
 const Form = (props) => {
 	const [title, setTitle] = useState("");
@@ -27,15 +28,9 @@ const Form = (props) => {
 		setDate("");
 	};
 
-	let multiplier = 0;
-	const randomNumber = () => {
-		const number = Math.random() * multiplier;
-		multiplier++;
-		return number;
-	};
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
+
 		const d = new Date(date);
 		const locale = navigator.locale;
 		const month = d.toLocaleDateString(locale, { month: "long" });
@@ -47,10 +42,15 @@ const Form = (props) => {
 			title,
 			amount,
 			date: finalDate,
-			key: randomNumber(),
 		};
 		resetForm();
-		props.formData(expenseData);
+		if (event.nativeEvent.submitter.id === "Add") {
+			props.submitData(expenseData);
+		}
+
+		if (event.nativeEvent.submitter.id === "Cancel") {
+			resetForm();
+		}
 	};
 
 	return (
@@ -95,12 +95,8 @@ const Form = (props) => {
 					value={date}
 				/>
 			</div>
-			<button className="btn" type="submit">
-				Add
-			</button>
-			<button className="btn" type="submit">
-				Delete
-			</button>
+			<Button name="Add" />
+			<Button name="Cancel" />
 		</form>
 	);
 };

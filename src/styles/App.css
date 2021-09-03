@@ -15,10 +15,12 @@
 
 .heading {
 	font-size: 3rem;
+	margin-bottom: 1.5rem;
 	text-align: center;
 	text-transform: uppercase;
 }
 
 .list {
 	list-style-type: none;
+	margin-top: 2rem;
 }

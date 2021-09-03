@@ -1,0 +1,17 @@
+.btn {
+	background-color: #ff4500;
+	border: 0.15rem solid #f8f8ff;
+	border-radius: 0.7rem;
+	box-shadow: 0 0.4rem 0 #181717;
+	color: #f8f8ff;
+	display: inline-block;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: bold;
+	padding: 1.3rem 2.2rem;
+	width: 14rem;
+}
+
+.btn:not(:last-of-type) {
+	margin-right: 1.4rem;
+}
