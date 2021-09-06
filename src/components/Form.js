@@ -1,35 +1,79 @@
-import { useState } from "react";
+import { useRef, useContext, useReducer, useEffect } from "react";
 import "../styles/Form.css";
 import { Button } from "./Button";
+import inputRef from "../Context/inputContext";
+
+const setFormData = (state, action) => {
+	if (action.type === "TITLE_INPUT") {
+		return {
+			...state,
+			title: action.value,
+		};
+	}
+
+	if (action.type === "AMOUNT_INPUT") {
+		return {
+			...state,
+			amount: action.value,
+		};
+	}
+
+	if (action.type === "DATE_INPUT") {
+		return {
+			...state,
+			date: action.value,
+		};
+	}
+};
 
 const Form = (props) => {
-	const [title, setTitle] = useState("");
-	const [amount, setAmount] = useState("");
-	const [date, setDate] = useState("");
+	// const [title, setTitle] = useState("");
+	// const [amount, setAmount] = useState("");
+	// const [date, setDate] = useState("");
+
+	const [formData, DispatchForm] = useReducer(setFormData, {
+		title: "",
+		amount: "",
+		date: "",
+	});
+
+	const context = useContext(inputRef);
+	const titleInputRef = useRef("");
+
+	useEffect(() => {
+		context.isPressed && titleInputRef.current.focus();
+	}, [context.isPressed]);
 
 	const handleTitleChange = (event) => {
-		const newTitle = event.target.value;
-		setTitle(newTitle);
+		DispatchForm({ type: "TITLE_INPUT", value: event.target.value });
+		// const newTitle = event.target.value;
+		// setTitle(newTitle);
 	};
 
 	const handleAmountChange = (event) => {
-		const newAmount = event.target.value;
-		setAmount(newAmount);
+		DispatchForm({ type: "AMOUNT_INPUT", value: event.target.value });
+		// const newAmount = event.target.value;
+		// setAmount(newAmount);
 	};
 
 	const handleDateChange = (event) => {
-		const newDate = event.target.value;
-		setDate(newDate);
+		DispatchForm({ type: "DATE_INPUT", value: event.target.value });
+		// const newDate = event.target.value;
+		// setDate(newDate);
 	};
 
 	const resetForm = () => {
-		setTitle("");
-		setAmount("");
-		setDate("");
+		formData.title = "";
+		formData.amount = "";
+		formData.date = "";
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+
+		const { title, amount, date } = formData;
+		if (title.trim() === "" || amount.trim() === "" || date.trim() === "")
+			return;
 
 		const d = new Date(date);
 		const locale = navigator.locale;
@@ -46,10 +90,12 @@ const Form = (props) => {
 		resetForm();
 		if (event.nativeEvent.submitter.id === "Add") {
 			props.submitData(expenseData);
+			titleInputRef.current.focus();
 		}
 
 		if (event.nativeEvent.submitter.id === "Cancel") {
 			resetForm();
+			titleInputRef.current.focus();
 		}
 	};
 
@@ -65,7 +111,8 @@ const Form = (props) => {
 					id="title"
 					placeholder="title"
 					onChange={handleTitleChange}
-					value={title}
+					value={formData.title}
+					ref={titleInputRef}
 				/>
 			</div>
 			<div className="form__controls">
@@ -80,7 +127,7 @@ const Form = (props) => {
 					id="amount"
 					placeholder="amount"
 					onChange={handleAmountChange}
-					value={amount}
+					value={formData.amount}
 				/>
 			</div>
 			<div className="form__controls">
@@ -92,7 +139,7 @@ const Form = (props) => {
 					className="form__input"
 					id="date"
 					onChange={handleDateChange}
-					value={date}
+					value={formData.date}
 				/>
 			</div>
 			<Button name="Add" />

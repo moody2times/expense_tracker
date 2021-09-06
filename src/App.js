@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { React, useState } from "react";
 import "./styles/App.css";
 import ExpenseItem from "./components/ExpenseItem";
 import Form from "./components/Form";
 import Select from "./components/Select";
 import { Button } from "./components/Button";
+import inputRef from "./Context/inputContext";
 
 const App = () => {
 	const [data, setData] = useState([
@@ -52,34 +53,36 @@ const App = () => {
 	};
 
 	return (
-		<div className="App">
-			<h1 className="heading">Expense tracker</h1>
-			{isPressed ? (
-				<Form submitData={handleData} />
-			) : (
-				<Button name="Add" click={handleClick} />
-			)}
-			<Select filter={filterYear} clear={onClearFilter} />
-			<ul className="list">
-				{(noFilter &&
-					data.map((d) => (
-						<ExpenseItem
-							title={d.title}
-							amount={d.amount}
-							date={d.date}
-							key={randomNumber()}
-						/>
-					))) ||
-					filterData.map((fd) => (
-						<ExpenseItem
-							title={fd.title}
-							amount={fd.amount}
-							date={fd.date}
-							key={randomNumber()}
-						/>
-					))}
-			</ul>
-		</div>
+		<inputRef.Provider value={{ isPressed }}>
+			<div className="App">
+				<h1 className="heading">Expense tracker</h1>
+				{isPressed ? (
+					<Form submitData={handleData} />
+				) : (
+					<Button name="New" click={handleClick} />
+				)}
+				<Select filter={filterYear} clear={onClearFilter} />
+				<ul className="list">
+					{(noFilter &&
+						data.map((d) => (
+							<ExpenseItem
+								title={d.title}
+								amount={d.amount}
+								date={d.date}
+								key={randomNumber()}
+							/>
+						))) ||
+						filterData.map((fd) => (
+							<ExpenseItem
+								title={fd.title}
+								amount={fd.amount}
+								date={fd.date}
+								key={randomNumber()}
+							/>
+						))}
+				</ul>
+			</div>
+		</inputRef.Provider>
 	);
 };
 

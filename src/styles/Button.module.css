@@ -15,3 +15,13 @@
 .btn:not(:last-of-type) {
 	margin-right: 1.4rem;
 }
+
+.btn:focus {
+	outline: none;
+	background-color: #be3300;
+}
+
+.btn:active {
+	box-shadow: 0 0 0 #181717;
+	transform: translateY(0.4rem);
+}
