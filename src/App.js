@@ -1,10 +1,12 @@
-import { React, useState } from "react";
-import "./styles/App.css";
+import { React, useState, useEffect } from "react";
 import ExpenseItem from "./components/ExpenseItem";
 import Form from "./components/Form";
 import Select from "./components/Select";
 import { Button } from "./components/Button";
 import inputRef from "./Context/inputContext";
+import Card from "./components/Card";
+import Chart from "./components/Chart";
+import "./styles/App.css";
 
 const App = () => {
 	const [data, setData] = useState([
@@ -52,6 +54,26 @@ const App = () => {
 		setNoFilter(true);
 	};
 
+	// useEffect(() => {
+	// 	const expenseChart = [
+	// 		{ month: "jan", value: 0 },
+	// 		{ month: "feb", value: 0 },
+	// 		{ month: "mar", value: 0 },
+	// 		{ month: "apr", value: 0 },
+	// 		{ month: "may", value: 0 },
+	// 		{ month: "jun", value: 0 },
+	// 		{ month: "jul", value: 0 },
+	// 		{ month: "aug", value: 0 },
+	// 		{ month: "sep", value: 0 },
+	// 		{ month: "oct", value: 0 },
+	// 		{ month: "nov", value: 0 },
+	// 		{ month: "dec", value: 0 },
+	// 	];
+	// 	data.map((d, i) => {
+	// 		const exp = expenseChart[i];
+	// 	});
+	// }, [data]);
+
 	return (
 		<inputRef.Provider value={{ isPressed }}>
 			<div className="App">
@@ -61,6 +83,9 @@ const App = () => {
 				) : (
 					<Button name="New" click={handleClick} />
 				)}
+				<Card>
+					<Chart label="jan" value={280} max={800} />
+				</Card>
 				<Select filter={filterYear} clear={onClearFilter} />
 				<ul className="list">
 					{(noFilter &&
