@@ -1,6 +1,6 @@
 .list__container {
 	background-color: #333;
-	border: 0.25rem solid #f8f8ff;
+	border: 0.1rem solid #f8f8ff;
 	border-radius: 1rem;
 	box-shadow: 0 0.4rem 0 #181717;
 	color: #f8f8ff;
@@ -40,8 +40,9 @@
 	border: 0.15rem solid #f8f8ff;
 	border-radius: 0.7rem;
 	box-shadow: 0 0.4rem 0 #181717;
-	padding: 0.8rem 2.2rem;
-	width: 7rem;
+	padding: 0.8rem 1.4rem;
+	text-align: center;
+	width: 10rem;
 }
 
 .list__description {
