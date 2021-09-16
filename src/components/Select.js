@@ -19,9 +19,14 @@ const Select = (props) => {
 		props.clear();
 	};
 
+	const handleSort = () => {
+		props.onSort();
+	};
+
 	return (
 		<div className="select__controls">
 			<Button name="Clear Filter" click={handleClick} />
+			<Button name="Sort" click={handleSort} />
 
 			<label htmlFor="select">
 				Filter:

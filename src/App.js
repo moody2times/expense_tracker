@@ -75,6 +75,11 @@ const App = () => {
 		setData((prevData) => prevData.filter((d) => d.id !== id));
 	};
 
+	const sortExpenses = () => {
+		// setData((prevData) => prevData.sort((a, b) => a.date - b.date));
+		console.log("sort");
+	};
+
 	const expense = data.map((d) => {
 		return (
 			<ExpenseItem
@@ -115,7 +120,11 @@ const App = () => {
 						<ChartExpense chartExp={filterData} />
 					</Card>
 				)}
-				<Select filter={filterYear} clear={onClearFilter} />
+				<Select
+					filter={filterYear}
+					clear={onClearFilter}
+					onSort={sortExpenses}
+				/>
 				<ul className="list">{(noFilter && expense) || filteredExpense}</ul>
 			</div>
 		</inputRef.Provider>
