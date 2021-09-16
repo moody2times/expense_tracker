@@ -16,16 +16,15 @@ const ChartExpense = (props) => {
 		{ month: "dec", value: 0 },
 	];
 
-	chartData.map((data) => {
+	chartData.forEach((data) => {
 		props.chartExp.forEach(
 			(item) => item.date.includes(data.month) && (data.value += item.amount)
 		);
 	});
 
 	const maxData = chartData.map((item) => item.value);
-	const maxValue = Math.max(...maxData);
-
-	console.log(maxValue);
+	const maxValue = maxData.reduce((prev, curr) => (prev += curr), 0);
+	console.log(maxValue, maxData);
 
 	return chartData.map((c) => (
 		<Chart label={c.month} value={c.value} key={c.month} max={maxValue} />

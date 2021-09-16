@@ -1,4 +1,4 @@
-import { useRef, useContext, useReducer, useEffect } from "react";
+import { useRef, useContext, useReducer, useEffect, useState } from "react";
 import "../styles/Form.css";
 import { Button } from "./Button";
 import inputRef from "../Context/inputContext";
@@ -27,9 +27,7 @@ const setFormData = (state, action) => {
 };
 
 const Form = (props) => {
-	// const [title, setTitle] = useState("");
-	// const [amount, setAmount] = useState("");
-	// const [date, setDate] = useState("");
+	const [randomInteger, setRandomInteger] = useState(0);
 
 	const [formData, DispatchForm] = useReducer(setFormData, {
 		title: "",
@@ -75,10 +73,8 @@ const Form = (props) => {
 		if (title.trim() === "" || amount.trim() === "" || date.trim() === "")
 			return;
 
-		let multiplier = 0;
 		const randomNumber = () => {
-			const number = Math.random() * multiplier;
-			multiplier++;
+			const number = Math.random() * randomInteger;
 			return number;
 		};
 
@@ -88,6 +84,8 @@ const Form = (props) => {
 			date: new Date(date),
 			id: randomNumber(),
 		};
+
+		setRandomInteger((prevNum) => prevNum + 1);
 
 		resetForm();
 		if (event.nativeEvent.submitter.id === "Add") {

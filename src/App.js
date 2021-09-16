@@ -49,7 +49,7 @@ const App = () => {
 	const handleData = (expense) => {
 		const newData = {
 			title: expense.title,
-			amount: expense.amount,
+			amount: +expense.amount,
 			date: formatDate(expense.date),
 			id: expense.id,
 		};
