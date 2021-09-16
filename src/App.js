@@ -54,6 +54,7 @@ const App = () => {
 			id: expense.id,
 		};
 		setData((prevData) => [newData, ...prevData]);
+		setNoFilter(true);
 	};
 
 	const filterYear = (year) => {
@@ -70,13 +71,19 @@ const App = () => {
 		setNoFilter(true);
 	};
 
+	const onDelete = (id) => {
+		setData((prevData) => prevData.filter((d) => d.id !== id));
+	};
+
 	const expense = data.map((d) => {
 		return (
 			<ExpenseItem
 				title={d.title}
 				amount={d.amount}
 				date={d.date}
+				id={d.id}
 				key={d.id}
+				delete={onDelete}
 			/>
 		);
 	});
@@ -87,7 +94,9 @@ const App = () => {
 				title={d.title}
 				amount={d.amount}
 				date={d.date}
+				id={d.id}
 				key={d.id}
+				delete={onDelete}
 			/>
 		);
 	});

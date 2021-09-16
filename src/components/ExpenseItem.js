@@ -9,12 +9,12 @@ const ExpenseItem = (props) => {
 	const year = timeStamp.toLocaleString(locale, { year: "numeric" });
 	const date = timeStamp.toLocaleString(locale, { day: "numeric" });
 
-	// const handleClick = () => {
-	// 	setAmount(+amount + 1);
-	// };
+	const handleClick = () => {
+		props.delete(props.id);
+	};
 
 	return (
-		<li className="list__container">
+		<li className="list__container" onClick={handleClick}>
 			<div className="list__date">
 				<span className="list__date--date">{date}</span>
 				<span className="list__date--month">{month}</span>
