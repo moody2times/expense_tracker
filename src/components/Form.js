@@ -75,18 +75,20 @@ const Form = (props) => {
 		if (title.trim() === "" || amount.trim() === "" || date.trim() === "")
 			return;
 
-		const d = new Date(date);
-		const locale = navigator.locale;
-		const month = d.toLocaleDateString(locale, { month: "long" });
-		const day = d.toLocaleDateString(locale, { day: "2-digit" });
-		const year = d.toLocaleDateString(locale, { year: "numeric" });
-		const finalDate = `${month}/${day}/${year}`;
+		let multiplier = 0;
+		const randomNumber = () => {
+			const number = Math.random() * multiplier;
+			multiplier++;
+			return number;
+		};
 
 		const expenseData = {
 			title,
 			amount,
-			date: finalDate,
+			date: new Date(date),
+			id: randomNumber(),
 		};
+
 		resetForm();
 		if (event.nativeEvent.submitter.id === "Add") {
 			props.submitData(expenseData);

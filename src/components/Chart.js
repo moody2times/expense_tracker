@@ -5,7 +5,7 @@ import styles from "../styles/Chart.module.css";
 const Chart = (props) => {
 	let fill = 0;
 
-	if (props.value) {
+	if (props.max > 0) {
 		fill = Math.round((props.value / props.max) * 100);
 	}
 

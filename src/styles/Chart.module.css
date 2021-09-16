@@ -28,5 +28,5 @@
 	position: absolute;
 	bottom: 0;
 
-	transition: height 1s ease-out;
+	transition: height 500ms ease-out;
 }

@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import ExpenseItem from "./components/ExpenseItem";
 import Form from "./components/Form";
 import Select from "./components/Select";
@@ -13,40 +13,54 @@ const App = () => {
 		{
 			title: "Guitar",
 			amount: 130,
-			date: `December/26/2019`,
+			date: `december/26/2019`,
+			id: "e1",
 		},
 		{
 			title: "Smartphone",
 			amount: 200,
-			date: `June/17/2020`,
+			date: `june/17/2020`,
+			id: "e2",
 		},
 		{
 			title: "Toys",
 			amount: 50,
-			date: `April/17/2021`,
+			date: `april/17/2021`,
+			id: "e3",
 		},
 	]);
 	const [filterData, setFilterData] = useState([]);
 	const [isPressed, setIsPressed] = useState(false);
 	const [noFilter, setNoFilter] = useState(true);
 
+	const formatDate = (date) => {
+		const d = new Date(date);
+		const locale = navigator.locale;
+		const month = d.toLocaleDateString(locale, { month: "long" });
+		const day = d.toLocaleDateString(locale, { day: "2-digit" });
+		const year = d.toLocaleDateString(locale, { year: "numeric" });
+		const formattedDate = `${month}/${day}/${year}`;
+
+		return formattedDate;
+	};
+
 	const handleData = (expense) => {
-		setData((prevData) => [expense, ...prevData]);
+		const newData = {
+			title: expense.title,
+			amount: expense.amount,
+			date: formatDate(expense.date),
+			id: expense.id,
+		};
+		setData((prevData) => [newData, ...prevData]);
 	};
 
 	const filterYear = (year) => {
-		setFilterData(data.filter((d) => d.date.includes(year)));
+		const filterExpenses = data.filter((d) => d.date.includes(year));
+		setFilterData(filterExpenses);
 		setNoFilter(false);
 	};
 
-	let multiplier = 0;
-	const randomNumber = () => {
-		const number = Math.random() * multiplier;
-		multiplier++;
-		return number;
-	};
-
-	const handleClick = (event) => {
+	const handleClick = () => {
 		setIsPressed(true);
 	};
 
@@ -54,25 +68,56 @@ const App = () => {
 		setNoFilter(true);
 	};
 
-	// useEffect(() => {
-	// 	const expenseChart = [
-	// 		{ month: "jan", value: 0 },
-	// 		{ month: "feb", value: 0 },
-	// 		{ month: "mar", value: 0 },
-	// 		{ month: "apr", value: 0 },
-	// 		{ month: "may", value: 0 },
-	// 		{ month: "jun", value: 0 },
-	// 		{ month: "jul", value: 0 },
-	// 		{ month: "aug", value: 0 },
-	// 		{ month: "sep", value: 0 },
-	// 		{ month: "oct", value: 0 },
-	// 		{ month: "nov", value: 0 },
-	// 		{ month: "dec", value: 0 },
-	// 	];
-	// 	data.map((d, i) => {
-	// 		const exp = expenseChart[i];
-	// 	});
-	// }, [data]);
+	const expense = data.map((d) => {
+		return (
+			<ExpenseItem
+				title={d.title}
+				amount={d.amount}
+				date={d.date}
+				key={d.id}
+			/>
+		);
+	});
+
+	const filteredExpense = filterData.map((d) => {
+		return (
+			<ExpenseItem
+				title={d.title}
+				amount={d.amount}
+				date={d.date}
+				key={d.id}
+			/>
+		);
+	});
+
+	const chartData = [
+		{ month: "jan", value: 0 },
+		{ month: "feb", value: 0 },
+		{ month: "mar", value: 0 },
+		{ month: "apr", value: 0 },
+		{ month: "may", value: 0 },
+		{ month: "jun", value: 0 },
+		{ month: "jul", value: 0 },
+		{ month: "aug", value: 0 },
+		{ month: "sep", value: 0 },
+		{ month: "oct", value: 0 },
+		{ month: "nov", value: 0 },
+		{ month: "dec", value: 0 },
+	];
+
+	for (const c of chartData) {
+		filterData.forEach((item) => {
+			if (item.date.includes(c.month)) {
+				console.log(item);
+				c.value = item.amount;
+			}
+		});
+	}
+
+	console.log(chartData);
+
+	const maxData = chartData.map((item) => item.value);
+	const maxValue = Math.max(...maxData);
 
 	return (
 		<inputRef.Provider value={{ isPressed }}>
@@ -83,29 +128,20 @@ const App = () => {
 				) : (
 					<Button name="New" click={handleClick} />
 				)}
-				<Card>
-					<Chart label="jan" value={280} max={800} />
-				</Card>
-				<Select filter={filterYear} clear={onClearFilter} />
-				<ul className="list">
-					{(noFilter &&
-						data.map((d) => (
-							<ExpenseItem
-								title={d.title}
-								amount={d.amount}
-								date={d.date}
-								key={randomNumber()}
-							/>
-						))) ||
-						filterData.map((fd) => (
-							<ExpenseItem
-								title={fd.title}
-								amount={fd.amount}
-								date={fd.date}
-								key={randomNumber()}
+				{!noFilter && (
+					<Card>
+						{chartData.map((c) => (
+							<Chart
+								label={c.month}
+								value={c.value}
+								key={c.month}
+								max={maxValue}
 							/>
 						))}
-				</ul>
+					</Card>
+				)}
+				<Select filter={filterYear} clear={onClearFilter} />
+				<ul className="list">{(noFilter && expense) || filteredExpense}</ul>
 			</div>
 		</inputRef.Provider>
 	);
