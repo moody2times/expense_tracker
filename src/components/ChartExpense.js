@@ -1,0 +1,35 @@
+import Chart from "./Chart.js";
+
+const ChartExpense = (props) => {
+	const chartData = [
+		{ month: "jan", value: 0 },
+		{ month: "feb", value: 0 },
+		{ month: "mar", value: 0 },
+		{ month: "apr", value: 0 },
+		{ month: "may", value: 0 },
+		{ month: "jun", value: 0 },
+		{ month: "jul", value: 0 },
+		{ month: "aug", value: 0 },
+		{ month: "sep", value: 0 },
+		{ month: "oct", value: 0 },
+		{ month: "nov", value: 0 },
+		{ month: "dec", value: 0 },
+	];
+
+	chartData.map((data) => {
+		props.chartExp.forEach(
+			(item) => item.date.includes(data.month) && (data.value += item.amount)
+		);
+	});
+
+	const maxData = chartData.map((item) => item.value);
+	const maxValue = Math.max(...maxData);
+
+	console.log(maxValue);
+
+	return chartData.map((c) => (
+		<Chart label={c.month} value={c.value} key={c.month} max={maxValue} />
+	));
+};
+
+export default ChartExpense;

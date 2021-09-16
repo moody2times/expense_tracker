@@ -5,7 +5,7 @@ import Select from "./components/Select";
 import { Button } from "./components/Button";
 import inputRef from "./Context/inputContext";
 import Card from "./components/Card";
-import Chart from "./components/Chart";
+import ChartExpense from "./components/ChartExpense";
 import "./styles/App.css";
 
 const App = () => {
@@ -36,7 +36,9 @@ const App = () => {
 	const formatDate = (date) => {
 		const d = new Date(date);
 		const locale = navigator.locale;
-		const month = d.toLocaleDateString(locale, { month: "long" });
+		const month = d
+			.toLocaleDateString(locale, { month: "long" })
+			.toLowerCase();
 		const day = d.toLocaleDateString(locale, { day: "2-digit" });
 		const year = d.toLocaleDateString(locale, { year: "numeric" });
 		const formattedDate = `${month}/${day}/${year}`;
@@ -90,35 +92,6 @@ const App = () => {
 		);
 	});
 
-	const chartData = [
-		{ month: "jan", value: 0 },
-		{ month: "feb", value: 0 },
-		{ month: "mar", value: 0 },
-		{ month: "apr", value: 0 },
-		{ month: "may", value: 0 },
-		{ month: "jun", value: 0 },
-		{ month: "jul", value: 0 },
-		{ month: "aug", value: 0 },
-		{ month: "sep", value: 0 },
-		{ month: "oct", value: 0 },
-		{ month: "nov", value: 0 },
-		{ month: "dec", value: 0 },
-	];
-
-	for (const c of chartData) {
-		filterData.forEach((item) => {
-			if (item.date.includes(c.month)) {
-				console.log(item);
-				c.value = item.amount;
-			}
-		});
-	}
-
-	console.log(chartData);
-
-	const maxData = chartData.map((item) => item.value);
-	const maxValue = Math.max(...maxData);
-
 	return (
 		<inputRef.Provider value={{ isPressed }}>
 			<div className="App">
@@ -130,14 +103,7 @@ const App = () => {
 				)}
 				{!noFilter && (
 					<Card>
-						{chartData.map((c) => (
-							<Chart
-								label={c.month}
-								value={c.value}
-								key={c.month}
-								max={maxValue}
-							/>
-						))}
+						<ChartExpense chartExp={filterData} />
 					</Card>
 				)}
 				<Select filter={filterYear} clear={onClearFilter} />
