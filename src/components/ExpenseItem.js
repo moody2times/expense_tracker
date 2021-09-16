@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import React, { useCallback } from "react";
 import "../styles/Expense.css";
 
 const ExpenseItem = (props) => {
@@ -9,9 +9,9 @@ const ExpenseItem = (props) => {
 	const year = timeStamp.toLocaleString(locale, { year: "numeric" });
 	const date = timeStamp.toLocaleString(locale, { day: "numeric" });
 
-	const handleClick = () => {
-		props.delete(props.id);
-	};
+	const { id, delete: deleteList } = props;
+
+	const handleClick = useCallback(() => deleteList(id), [deleteList, id]);
 
 	return (
 		<li className="list__container" onClick={handleClick}>
@@ -26,4 +26,4 @@ const ExpenseItem = (props) => {
 	);
 };
 
-export default ExpenseItem;
+export default React.memo(ExpenseItem);
