@@ -24,7 +24,6 @@ const ChartExpense = (props) => {
 
 	const maxData = chartData.map((item) => item.value);
 	const maxValue = maxData.reduce((prev, curr) => (prev += curr), 0);
-	console.log(maxValue, maxData);
 
 	return chartData.map((c) => (
 		<Chart label={c.month} value={c.value} key={c.month} max={maxValue} />
