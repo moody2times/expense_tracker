@@ -114,7 +114,7 @@ const App = () => {
 				{isPressed ? (
 					<Form submitData={handleData} />
 				) : (
-					<Button name="New" click={handleClick} />
+					<Button name="Add Expense" click={handleClick} />
 				)}
 				{!noFilter && (
 					<Card>
