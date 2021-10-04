@@ -7,7 +7,6 @@ import inputRef from "./Context/inputContext";
 import Card from "./components/Card";
 import ChartExpense from "./components/ChartExpense";
 import "./styles/App.css";
-import styles from "./styles/Button.module.css";
 
 const App = () => {
 	const [data, setData] = useState([
@@ -116,7 +115,7 @@ const App = () => {
 					<Form submitData={handleData} />
 				) : (
 					<Button
-						className={styles.btn__new}
+						style={{ width: "27rem" }}
 						name="Add Expense"
 						click={handleClick}
 					/>
