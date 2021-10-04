@@ -13,19 +13,19 @@ const App = () => {
 		{
 			title: "Guitar",
 			amount: 130,
-			date: `december/26/2019`,
+			date: `2019/december/26`,
 			id: "e1",
 		},
 		{
 			title: "Smartphone",
 			amount: 200,
-			date: `june/17/2020`,
+			date: `2020/june/17`,
 			id: "e2",
 		},
 		{
 			title: "Toys",
 			amount: 50,
-			date: `april/17/2021`,
+			date: `2021/april/17`,
 			id: "e3",
 		},
 	]);
@@ -41,7 +41,7 @@ const App = () => {
 			.toLowerCase();
 		const day = d.toLocaleDateString(locale, { day: "2-digit" });
 		const year = d.toLocaleDateString(locale, { year: "numeric" });
-		const formattedDate = `${month}/${day}/${year}`;
+		const formattedDate = `${year}/${month}/${day}`;
 
 		return formattedDate;
 	};
@@ -76,8 +76,9 @@ const App = () => {
 	};
 
 	const sortExpenses = () => {
-		// setData((prevData) => prevData.sort((a, b) => a.date - b.date));
-		console.log("sort");
+		const sorted = data.sort((a, b) => a.date.localeCompare(b.date));
+		// setData(sorted);
+		console.log(sorted, data);
 	};
 
 	const expense = data.map((d) => {
