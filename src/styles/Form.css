@@ -1,5 +1,5 @@
 form {
-	background-color: #ff7a4a;
+	background-color: #ff8559;
 	border: 0.25rem solid #f8f8ff;
 	border-radius: 1rem;
 	box-shadow: 0 0.4rem 0 #181717;
@@ -30,6 +30,6 @@ form {
 }
 
 .form__input:focus {
-	background-color: #b8b8b8;
+	background-color: #dfdfdf;
 	outline: none;
 }
