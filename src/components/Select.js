@@ -3,11 +3,13 @@ import "../styles/Select.css";
 import { Button } from "./Button";
 
 const Select = (props) => {
-	const [year, setYear] = useState("2019");
+	const [year, setYear] = useState([]);
 
 	const setFilterYear = (filYear) => {
 		props.filter(filYear);
 	};
+
+	const options = year.map((y) => <option key={Math.random()}>{y}</option>);
 
 	const handleChange = (event) => {
 		const newYear = event.target.value;
@@ -36,9 +38,8 @@ const Select = (props) => {
 					onChange={handleChange}
 					value={year}
 				>
-					<option defaultValue>2019</option>
-					<option>2020</option>
-					<option>2021</option>
+					<option value="" defaultValue></option>
+					{options}
 				</select>
 			</label>
 		</div>
