@@ -7,7 +7,7 @@ import inputRef from "./Context/inputContext";
 import Card from "./components/Card";
 import ChartExpense from "./components/ChartExpense";
 import "./styles/App.css";
-import styles from "./styles/Button.module.css"
+import styles from "./styles/Button.module.css";
 
 const App = () => {
 	const [data, setData] = useState([
@@ -115,7 +115,11 @@ const App = () => {
 				{isPressed ? (
 					<Form submitData={handleData} />
 				) : (
-						<Button className={ styles.btn--new } name="Add Expense" click={handleClick} />
+					<Button
+						className={styles.btn__new}
+						name="Add Expense"
+						click={handleClick}
+					/>
 				)}
 				{!noFilter && (
 					<Card>
