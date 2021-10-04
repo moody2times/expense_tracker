@@ -11,6 +11,12 @@ import "./styles/App.css";
 const App = () => {
 	const [data, setData] = useState([
 		{
+			title: "Toys",
+			amount: 50,
+			date: `2021/april/17`,
+			id: "e3",
+		},
+		{
 			title: "Guitar",
 			amount: 130,
 			date: `2019/december/26`,
@@ -21,12 +27,6 @@ const App = () => {
 			amount: 200,
 			date: `2020/june/17`,
 			id: "e2",
-		},
-		{
-			title: "Toys",
-			amount: 50,
-			date: `2021/april/17`,
-			id: "e3",
 		},
 	]);
 	const [filterData, setFilterData] = useState([]);
@@ -76,9 +76,9 @@ const App = () => {
 	};
 
 	const sortExpenses = () => {
-		const sorted = data.sort((a, b) => a.date.localeCompare(b.date));
-		// setData(sorted);
-		console.log(sorted, data);
+		const sortArray = data.slice();
+		const sorted = sortArray.sort((a, b) => a.date.localeCompare(b.date));
+		setData(sorted);
 	};
 
 	const expense = data.map((d) => {
