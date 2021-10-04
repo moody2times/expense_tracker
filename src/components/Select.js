@@ -2,14 +2,16 @@ import { useState } from "react";
 import "../styles/Select.css";
 import { Button } from "./Button";
 
+const years = [2019, 2020, 2021];
+
 const Select = (props) => {
-	const [year, setYear] = useState([]);
+	const [year, setYear] = useState("");
 
 	const setFilterYear = (filYear) => {
 		props.filter(filYear);
 	};
 
-	const options = year.map((y) => <option key={Math.random()}>{y}</option>);
+	const options = years.map((y) => <option key={Math.random()}>{y}</option>);
 
 	const handleChange = (event) => {
 		const newYear = event.target.value;
