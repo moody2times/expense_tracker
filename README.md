@@ -10,7 +10,7 @@
 </br>
 <h2>Description</h2>
 This is a simple react expense tracker app. Enter the expense with the date and it will be added to your expenses. You can filter your expenses by year and see a chart of your expenses. You can also sort all your expenses. <b>TAKE NOTICE</b>
-that the data is not persisted in a database and so when you refresh your screen, your data is lost. This is a demo app.
+that the data is not persisted in a database and so when you refresh your screen, your data is lost.
 </br>
 </br>
 <h2>Features</h2>
