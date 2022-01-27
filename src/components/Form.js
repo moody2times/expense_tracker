@@ -71,6 +71,7 @@ const Form = (props) => {
 		formData.date = "";
 	};
 
+	//handle submit function
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
