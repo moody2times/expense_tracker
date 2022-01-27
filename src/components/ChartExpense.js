@@ -1,6 +1,7 @@
 import Chart from "./Chart.js";
 
 const ChartExpense = (props) => {
+	//dummy data for the chart
 	const chartData = [
 		{ month: "jan", value: 0 },
 		{ month: "feb", value: 0 },
