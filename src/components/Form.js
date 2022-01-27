@@ -3,6 +3,7 @@ import "../styles/Form.css";
 import { Button } from "./Button";
 import inputRef from "../Context/inputContext";
 
+//useReducer function
 const setFormData = (state, action) => {
 	if (action.type === "TITLE_INPUT") {
 		return {
