@@ -25,7 +25,9 @@ const ChartExpense = (props) => {
 		);
 	});
 
+	//map chartData and set the value
 	const maxData = chartData.map((item) => item.value);
+	//find the max value
 	const maxValue = maxData.reduce((prev, curr) => (prev += curr), 0);
 
 	return chartData.map((c) => (
