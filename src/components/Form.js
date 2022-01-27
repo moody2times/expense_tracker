@@ -5,6 +5,7 @@ import inputRef from "../Context/inputContext";
 
 //useReducer function
 const setFormData = (state, action) => {
+	//when the action dispatched is TITLE_INPUT
 	if (action.type === "TITLE_INPUT") {
 		return {
 			...state,
@@ -12,6 +13,7 @@ const setFormData = (state, action) => {
 		};
 	}
 
+	//when the action dispatched is AMOUNT_INPUT
 	if (action.type === "AMOUNT_INPUT") {
 		return {
 			...state,
@@ -19,6 +21,7 @@ const setFormData = (state, action) => {
 		};
 	}
 
+	//when the action dispatched is DATE_INPUT
 	if (action.type === "DATE_INPUT") {
 		return {
 			...state,
