@@ -4,6 +4,7 @@ import styles from "../styles/Chart.module.css";
 const Chart = (props) => {
 	let fill = 0;
 
+	//fill the bars with the percentage of the expenses
 	if (props.max > 0) {
 		fill = Math.round((props.value / props.max) * 100);
 	}
