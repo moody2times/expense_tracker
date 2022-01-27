@@ -17,8 +17,7 @@ const ChartExpense = (props) => {
 		{ month: "dec", value: 0 },
 	];
 
-	//loop through the dummy calendar data and map them
-	//to the chartExp component
+	//loop through the dummy calendar data and track the expenses
 	chartData.forEach((data) => {
 		props.chartExp.forEach(
 			(item) => item.date.includes(data.month) && (data.value += item.amount)
