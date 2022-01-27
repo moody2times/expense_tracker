@@ -24,7 +24,7 @@ const ChartExpense = (props) => {
 		);
 	});
 
-	//map chartData and set the value
+	//map chartData and set the expense for each month
 	const maxData = chartData.map((item) => item.value);
 	//find the max value
 	const maxValue = maxData.reduce((prev, curr) => (prev += curr), 0);
