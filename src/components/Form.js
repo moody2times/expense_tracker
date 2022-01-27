@@ -64,6 +64,7 @@ const Form = (props) => {
 		// setDate(newDate);
 	};
 
+	//function to reset the form
 	const resetForm = () => {
 		formData.title = "";
 		formData.amount = "";
