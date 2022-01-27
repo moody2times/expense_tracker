@@ -1,7 +1,7 @@
 import Chart from "./Chart.js";
 
 const ChartExpense = (props) => {
-	//dummy data calendar for the chart
+	//dummy calendar data for the chart
 	const chartData = [
 		{ month: "jan", value: 0 },
 		{ month: "feb", value: 0 },
