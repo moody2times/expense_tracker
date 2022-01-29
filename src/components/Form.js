@@ -82,7 +82,7 @@ const Form = (props) => {
 			return;
 
 		//generate random id
-		const randomNumber = () => {
+		const uniqIdGenerator = () => {
 			const uniqId = () =>
 				Math.floor((Math.random() + 1) * 0x10000)
 					.toString(16)
@@ -94,7 +94,7 @@ const Form = (props) => {
 			title,
 			amount,
 			date: new Date(date),
-			id: randomNumber(),
+			id: uniqIdGenerator(),
 		};
 
 		setRandomInteger((prevNum) => prevNum + 1);
