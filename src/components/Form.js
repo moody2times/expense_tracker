@@ -81,6 +81,7 @@ const Form = (props) => {
 		if (title.trim() === "" || amount.trim() === "" || date.trim() === "")
 			return;
 
+		//generate random id
 		const randomNumber = () => {
 			const number = Math.random() * randomInteger;
 			return number;
