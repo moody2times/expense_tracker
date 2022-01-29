@@ -90,6 +90,7 @@ const Form = (props) => {
 			return `${uniqId()}-${uniqId()}-${uniqId()}`;
 		};
 
+		//expense object
 		const expenseData = {
 			title,
 			amount,
