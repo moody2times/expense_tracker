@@ -38,11 +38,7 @@ const setFormData = (state, action) => {
 };
 
 const Form = (props) => {
-	const [formData, DispatchForm] = useReducer(setFormData, {
-		title: "",
-		amount: "",
-		date: "",
-	});
+	const [formData, DispatchForm] = useReducer(setFormData, formState);
 
 	const context = useContext(inputRef);
 	const titleInputRef = useRef("");
