@@ -75,7 +75,9 @@ const Form = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
+		//destructure the formData
 		const { title, amount, date } = formData;
+		//check that inputs are not empty
 		if (title.trim() === "" || amount.trim() === "" || date.trim() === "")
 			return;
 
