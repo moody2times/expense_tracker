@@ -83,8 +83,11 @@ const Form = (props) => {
 
 		//generate random id
 		const randomNumber = () => {
-			const number = Math.random() * randomInteger;
-			return number;
+			const uniqId = () =>
+				Math.floor((Math.random() + 1) * 0x10000)
+					.toString(16)
+					.substring(1);
+			return `${uniqId()}-${uniqId()}-${uniqId()}`;
 		};
 
 		const expenseData = {
