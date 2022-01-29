@@ -3,6 +3,13 @@ import "../styles/Form.css";
 import { Button } from "./Button";
 import inputRef from "../Context/inputContext";
 
+//initial formData state
+const formState = {
+	title: "",
+	amount: "",
+	date: "",
+};
+
 //useReducer function
 const setFormData = (state, action) => {
 	//when the action dispatched is TITLE_INPUT
