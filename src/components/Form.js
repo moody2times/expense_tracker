@@ -10,7 +10,7 @@ const formState = {
 	date: "",
 };
 
-//useReducer function
+//form reducer function
 const setFormData = (state, action) => {
 	//when the action dispatched is TITLE_INPUT
 	if (action.type === "TITLE_INPUT") {
