@@ -31,8 +31,6 @@ const setFormData = (state, action) => {
 };
 
 const Form = (props) => {
-	const [randomInteger, setRandomInteger] = useState(0);
-
 	const [formData, DispatchForm] = useReducer(setFormData, {
 		title: "",
 		amount: "",
@@ -97,8 +95,6 @@ const Form = (props) => {
 			date: new Date(date),
 			id: uniqIdGenerator(),
 		};
-
-		setRandomInteger((prevNum) => prevNum + 1);
 
 		resetForm();
 		if (event.nativeEvent.submitter.id === "Add") {
