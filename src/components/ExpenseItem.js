@@ -12,6 +12,7 @@ const ExpenseItem = (props) => {
 	//destructure the props object
 	const { id, delete: deleteList } = props;
 
+	//handler to delete expenseItem
 	const handleClick = useCallback(() => deleteList(id), [deleteList, id]);
 
 	return (
