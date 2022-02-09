@@ -7,6 +7,7 @@ const years = [2019, 2020, 2021];
 const Select = (props) => {
 	const [year, setYear] = useState("");
 
+	//handler to filter by year
 	const setFilterYear = (filYear) => {
 		props.filter(filYear);
 	};
