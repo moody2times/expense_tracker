@@ -13,6 +13,7 @@ const Select = (props) => {
 		props.filter(filYear);
 	};
 
+	//configure the options for the html select tag
 	const options = years.map((y) => <option key={uniqIdGenerator()}>{y}</option>);
 
 	const handleChange = (event) => {
