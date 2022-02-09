@@ -2,7 +2,7 @@ import { useRef, useContext, useReducer, useEffect } from "react";
 import "../styles/Form.css";
 import { Button } from "./Button";
 import inputRef from "../Context/inputContext";
-import { uniqIdGenerator } from "../helper/randomId";
+import { uniqIdGenerator } from "../helper/uniqIdGenerator";
 
 //initial formData state
 const formState = {
