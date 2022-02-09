@@ -9,6 +9,7 @@ const ExpenseItem = (props) => {
 	const year = timeStamp.toLocaleString(locale, { year: "numeric" });
 	const date = timeStamp.toLocaleString(locale, { day: "numeric" });
 
+	//destructure the props object
 	const { id, delete: deleteList } = props;
 
 	const handleClick = useCallback(() => deleteList(id), [deleteList, id]);
