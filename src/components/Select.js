@@ -13,7 +13,7 @@ const Select = (props) => {
 		props.filter(filYear);
 	};
 
-	const options = years.map((y) => <option key={Math.random()}>{y}</option>);
+	const options = years.map((y) => <option key={uniqIdGenerator()}>{y}</option>);
 
 	const handleChange = (event) => {
 		const newYear = event.target.value;
